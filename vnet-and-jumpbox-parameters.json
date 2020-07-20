@@ -1,0 +1,121 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "subscriptionID": {
+            "value": "null"
+        },
+        "location": {
+            "value": "westus2"
+        },
+        "resourceGroup": {
+            "value": "dhs"
+        },
+        "vnetName": {
+            "value": "dhsvnet"
+        },
+        "vnetCIDRs": {
+            "value": [
+                    "10.0.0.0/16"
+                ] 
+            },
+        "subnet0Name": {
+            "value": "default"
+        },
+        "subnet0CIDR": {
+            "value": "10.0.0.0/24"
+        },
+        "ddosProtectionPlanEnabled": {
+            "value": false
+        },
+        "jumpboxSubnetName": {
+            "value": "dhsJumpboxSubnet" 
+             },
+        "jumpboxSubnetCIDR": {
+            "value": "10.0.1.0/26"
+        },
+        
+        
+        "networkInterfaceName": {
+            "value": "jumpbox258"
+        },
+        "networkSecurityGroupName": {
+            "value": "jumpbox-nsg"
+        },
+        "networkSecurityGroupRules": {
+            "value": [
+                {
+                    "name": "local-ip-only",
+                    "properties": {
+                        "priority": 100,
+                        "protocol": "TCP",
+                        "access": "Allow",
+                        "direction": "Inbound",
+                        "sourceApplicationSecurityGroups": [],
+                        "destinationApplicationSecurityGroups": [],
+                        "sourceAddressPrefix": "null",
+                        "sourcePortRange": "22",
+                        "destinationAddressPrefix": "*",
+                        "destinationPortRange": "22"
+                    }
+                },
+                {
+                    "name": "default-allow-ssh",
+                    "properties": {
+                        "priority": 1000,
+                        "protocol": "TCP",
+                        "access": "Allow",
+                        "direction": "Inbound",
+                        "sourceApplicationSecurityGroups": [],
+                        "destinationApplicationSecurityGroups": [],
+                        "sourceAddressPrefix": "*",
+                        "sourcePortRange": "*",
+                        "destinationAddressPrefix": "*",
+                        "destinationPortRange": "22"
+                    }
+                }
+            ]
+        },
+        "subnetName": {
+            "value": "dhsJumpboxSubnet"
+        },
+        "virtualNetworkId": {
+            "value": "/subscriptions/SUBSCRIPTIONID/resourceGroups/RESOURCEGROUP/providers/Microsoft.Network/virtualNetworks/VIRTUALNETWORKNAME"
+        },
+        "publicIpAddressName": {
+            "value": "jumpbox-ip"
+        },
+        "publicIpAddressType": {
+            "value": "Dynamic"
+        },
+        "publicIpAddressSku": {
+            "value": "Basic"
+        },
+        "virtualMachineName": {
+            "value": "jumpbox"
+        },
+        "virtualMachineComputerName": {
+            "value": "jumpbox"
+        },
+        "osDiskType": {
+            "value": "Standard_LRS"
+        },
+        "virtualMachineSize": {
+            "value": "Standard_B1ls"
+        },
+        "adminUsername": {
+            "value": "azureuser"
+        },
+        "diagnosticsStorageAccountName": {
+            "value": "NULL"
+        }, 
+        "diagnosticsStorageAccountType": {
+            "value": "Standard_LRS"
+        },
+        "diagnosticsStorageAccountKind": {
+            "value": "Storage"
+        }
+
+        
+    }
+}
