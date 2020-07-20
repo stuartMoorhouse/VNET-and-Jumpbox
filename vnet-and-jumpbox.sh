@@ -6,7 +6,7 @@ if (( "$#" != 2 ))
 then
     echo "Please supply the Location you wish the resources to be created in and the name of the Resource Group"
     echo "For example:"
-    echo "./create-peered-app.sh uswest2 newapplication"
+    echo "./create-peered-app.sh  westus2 newapplication"
 exit 1
 fi
 
@@ -32,7 +32,7 @@ SSH_PRIVATE_KEY=$(cat ~/.ssh/create-peered-app) && \
 rm -rf ~/.ssh/create-peered-app*
 
 # create the Azure Key Vault
-keyVaultName="${resourceGroup}13688479"
+keyVaultName="${resourceGroup}keyvault"
 printf "\n>>  Creating a new Azure Key Vault called $keyVaultName...\n"
 az keyvault create  --name $keyVaultName   --resource-group $resourceGroup  --output table
 
@@ -60,8 +60,8 @@ printf "\n>>  Creating a new Azure deployment called 'deployVNETandJumpbox in $l
 az deployment group create \
   --name  deployVNETandJumpbox \
   --resource-group $resourceGroup \
-  --template-file vnet.json \
-  --parameters vnet-parameters.json \
+  --template-file vnet-and-jumpbox.json \
+  --parameters vnet-and-jumpbox-parameters.json \
   --parameters sshPublicKey="$SSH_PUBLIC_KEY"
 
 

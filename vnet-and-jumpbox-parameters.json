@@ -2,9 +2,14 @@
     "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
     "contentVersion": "1.0.0.0",
     "parameters": {
-        "subscriptionID": {
-            "value": "null"
+
+        "subscriptionIDnumber": {
+            "value": "addYourSubscriptionIDnumberHere"
         },
+        "localIP": {
+            "value": "addTheIPofYourLocalMachineHere"
+        },
+
         "location": {
             "value": "westus2"
         },
@@ -42,46 +47,6 @@
         "networkSecurityGroupName": {
             "value": "jumpbox-nsg"
         },
-        "networkSecurityGroupRules": {
-            "value": [
-                {
-                    "name": "local-ip-only",
-                    "properties": {
-                        "priority": 100,
-                        "protocol": "TCP",
-                        "access": "Allow",
-                        "direction": "Inbound",
-                        "sourceApplicationSecurityGroups": [],
-                        "destinationApplicationSecurityGroups": [],
-                        "sourceAddressPrefix": "null",
-                        "sourcePortRange": "22",
-                        "destinationAddressPrefix": "*",
-                        "destinationPortRange": "22"
-                    }
-                },
-                {
-                    "name": "default-allow-ssh",
-                    "properties": {
-                        "priority": 1000,
-                        "protocol": "TCP",
-                        "access": "Allow",
-                        "direction": "Inbound",
-                        "sourceApplicationSecurityGroups": [],
-                        "destinationApplicationSecurityGroups": [],
-                        "sourceAddressPrefix": "*",
-                        "sourcePortRange": "*",
-                        "destinationAddressPrefix": "*",
-                        "destinationPortRange": "22"
-                    }
-                }
-            ]
-        },
-        "subnetName": {
-            "value": "dhsJumpboxSubnet"
-        },
-        "virtualNetworkId": {
-            "value": "/subscriptions/SUBSCRIPTIONID/resourceGroups/RESOURCEGROUP/providers/Microsoft.Network/virtualNetworks/VIRTUALNETWORKNAME"
-        },
         "publicIpAddressName": {
             "value": "jumpbox-ip"
         },
@@ -105,9 +70,6 @@
         },
         "adminUsername": {
             "value": "azureuser"
-        },
-        "diagnosticsStorageAccountName": {
-            "value": "NULL"
         }, 
         "diagnosticsStorageAccountType": {
             "value": "Standard_LRS"

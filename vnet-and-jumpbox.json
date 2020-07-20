@@ -2,7 +2,19 @@
     "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
     "contentVersion": "1.0.0.0",
     "parameters": {
-            "location": {
+        "sshPublicKey": {
+            "type": "string"
+        },
+        "subscriptionIDnumber": {
+            "type": "string"
+        },
+        "localIP": {
+            "type": "string"
+        },
+        "location": {
+            "type": "string"
+        },
+        "resourceGroup": {
             "type": "string"
         },
         "vnetName": {
@@ -26,22 +38,10 @@
         "ddosProtectionPlanEnabled": {
             "type": "bool"
         },
-
-
-
          "networkInterfaceName": {
             "type": "string"
         },
         "networkSecurityGroupName": {
-            "type": "string"
-        },
-        "networkSecurityGroupRules": {
-            "type": "array"
-        },
-        "subnetName": {
-            "type": "string"
-        },
-        "virtualNetworkId": {
             "type": "string"
         },
         "publicIpAddressName": {
@@ -68,28 +68,50 @@
         "adminUsername": {
             "type": "string"
         },
-        "diagnosticsStorageAccountName": {
-            "type": "string"
-        },
         "diagnosticsStorageAccountType": {
             "type": "string"
         },
         "diagnosticsStorageAccountKind": {
             "type": "string"
-        },
-
-        "sshPublicKey": {
-            "type": "string",
-            "defaultValue": "null"
         }
-
-
-
        },
     "variables": {
         "nsgId": "[resourceId(resourceGroup().name, 'Microsoft.Network/networkSecurityGroups', parameters('networkSecurityGroupName'))]",
-        "vnetId": "[parameters('virtualNetworkId')]",
-        "subnetRef": "[concat(variables('vnetId'), '/subnets/', parameters('subnetName'))]"
+        "vnetId": "[concat('/subscriptions/', parameters('subscriptionIDnumber'), '/resourceGroups/', parameters('resourceGroup'), '/providers/Microsoft.Network/virtualNetworks/', parameters('vnetName'))]", 
+        "subnetRef": "[concat(variables('vnetId'), '/subnets/', parameters('subnet0Name'))]",
+        "networkSecurityGroupRules":  [
+                {
+                    "name": "local-ip-only",
+                    "properties": {
+                        "priority": 100,
+                        "protocol": "TCP",
+                        "access": "Allow",
+                        "direction": "Inbound",
+                        "sourceApplicationSecurityGroups": [],
+                        "destinationApplicationSecurityGroups": [],
+                        "sourceAddressPrefix": "[parameters('localIP')]",
+                        "sourcePortRange": "22",
+                        "destinationAddressPrefix": "*",
+                        "destinationPortRange": "22"
+                    }
+                },
+                {
+                    "name": "default-allow-ssh",
+                    "properties": {
+                        "priority": 1000,
+                        "protocol": "TCP",
+                        "access": "Allow",
+                        "direction": "Inbound",
+                        "sourceApplicationSecurityGroups": [],
+                        "destinationApplicationSecurityGroups": [],
+                        "sourceAddressPrefix": "*",
+                        "sourcePortRange": "*",
+                        "destinationAddressPrefix": "*",
+                        "destinationPortRange": "22"
+                    }
+                }
+            ],
+        "diagnosticsStorageAccountName": "[concat(parameters('resourceGroup'), 'jboxdiagnostics')]"
       },
     "resources": [
         {
@@ -158,7 +180,7 @@
             "apiVersion": "2019-02-01",
             "location": "[parameters('location')]",
             "properties": {
-                "securityRules": "[parameters('networkSecurityGroupRules')]"
+                "securityRules": "[variables('networkSecurityGroupRules')]"
             }
         },
         {
@@ -180,7 +202,7 @@
             "location": "[parameters('location')]",
             "dependsOn": [
                 "[concat('Microsoft.Network/networkInterfaces/', parameters('networkInterfaceName'))]",
-                "[concat('Microsoft.Storage/storageAccounts/', parameters('diagnosticsStorageAccountName'))]"
+                "[concat('Microsoft.Storage/storageAccounts/', variables('diagnosticsStorageAccountName'))]"
             ],
             "properties": {
                 "hardwareProfile": {
@@ -224,13 +246,13 @@
                 "diagnosticsProfile": {
                     "bootDiagnostics": {
                         "enabled": true,
-                        "storageUri": "[concat('https://', parameters('diagnosticsStorageAccountName'), '.blob.core.windows.net/')]"
+                        "storageUri": "[concat('https://', variables('diagnosticsStorageAccountName'), '.blob.core.windows.net/')]"
                     }
                 }
             }
         },
         {
-            "name": "[parameters('diagnosticsStorageAccountName')]",
+            "name": "[variables('diagnosticsStorageAccountName')]",
             "type": "Microsoft.Storage/storageAccounts",
             "apiVersion": "2019-06-01",
             "location": "[parameters('location')]",
