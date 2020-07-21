@@ -6,7 +6,7 @@ if (( "$#" != 2 ))
 then
     echo "Please supply the Location you wish the resources to be created in and the name of the Resource Group"
     echo "For example:"
-    echo "./create-peered-app.sh  westus2 newapplication"
+    echo "bash vnet-and-jumpbox.sh  westus2 newapplication"
 exit 1
 fi
 
