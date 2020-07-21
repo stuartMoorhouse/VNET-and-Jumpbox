@@ -71,6 +71,18 @@
         "adminUsername": {
             "value": "azureuser"
         }, 
+        "imageReferencePublisher": {
+            "value": "xx"
+        },
+       "imageReferenceOffer": {
+            "value": "xx"
+        },
+        "imageReferenceSKU": {
+            "value": "xx"
+        },
+        "imageReferenceVersion": {
+            "value": "xx"
+        },
         "diagnosticsStorageAccountType": {
             "value": "Standard_LRS"
         },

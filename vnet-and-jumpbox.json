@@ -68,6 +68,18 @@
         "adminUsername": {
             "type": "string"
         },
+        "imageReferencePublisher": {
+            "type": "string"
+        },
+       "imageReferenceOffer": {
+            "type": "string"
+        },
+        "imageReferenceSKU": {
+             "type": "string"
+        },
+        "imageReferenceVersion": {
+             "type": "string"
+        },
         "diagnosticsStorageAccountType": {
             "type": "string"
         },
@@ -216,10 +228,10 @@
                         }
                     },
                     "imageReference": {
-                        "publisher": "OpenLogic",
-                        "offer": "CentOS",
-                        "sku": "8_1",
-                        "version": "latest"
+                        "publisher": "[parameters('imageReferencePublisher')]",
+                        "offer": "[parameters('imageReferenceOffer')]",
+                        "sku": "[parameters('imageReferenceSKU')]",
+                        "version": "[parameters('imageReferenceVersion')]"
                     }
                 },
                 "networkProfile": {
