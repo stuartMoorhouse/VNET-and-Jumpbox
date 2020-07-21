@@ -46,8 +46,7 @@ This script creates the SSH key, which is then stored in Key Vault. Then, it dep
 When you want to access your Jumpbox, you can return the private key from Key Vault with 
 ``az keyvault secret show -vault-name yourVaultName --name yourSecretName``
 
-Then, you can access your jumbbox server, with SSH as normal:
-TO DO
+Then, you can access your jumbbox server, with SSH as normal.
 
 
 ## Option 2) Creating the VNET and the Jumpbox with the ARM template
@@ -63,6 +62,5 @@ az deployment group create \
   --parameters vnet-and-jumpbox-parameters.json \
   --parameters sshPublicKey="$SSH_PUBLIC_KEY"
 ```
-Then, you can access your jumbbox server, with SSH as normal:
-TO DO
+Then, you can access your jumbbox server, with SSH as normal.
 
