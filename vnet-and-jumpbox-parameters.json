@@ -4,10 +4,10 @@
     "parameters": {
 
         "subscriptionIDnumber": {
-            "value": "addYourSubscriptionIDnumberHere"
+            "value": "addSubsciptionNumberHere"
         },
         "localIP": {
-            "value": "addTheIPofYourLocalMachineHere"
+            "value": "addIPofLocalMachineHere"
         },
 
         "location": {
@@ -72,16 +72,16 @@
             "value": "azureuser"
         }, 
         "imageReferencePublisher": {
-            "value": "xx"
+            "value": "OpenLogic"
         },
        "imageReferenceOffer": {
-            "value": "xx"
+            "value": "CentOS"
         },
         "imageReferenceSKU": {
-            "value": "xx"
+            "value": "8_1"
         },
         "imageReferenceVersion": {
-            "value": "xx"
+            "value": "latest"
         },
         "diagnosticsStorageAccountType": {
             "value": "Standard_LRS"
