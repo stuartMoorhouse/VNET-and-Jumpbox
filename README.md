@@ -43,8 +43,9 @@ This script creates the SSH key, which is then stored in Key Vault. Then, it dep
 ``bash vnet-and-jumpbox.sh  westus2 newapplication``
 
 ### Retrieving the keys from Key Vault
-When you want to access your Jumpbox, you can return the private key from Key Vault with 
-``az keyvault secret show -vault-name yourVaultName --name yourSecretName``
+When you want to access your Jumpbox, you can return the private key and password from Key Vault with 
+``az keyvault secret download --name create-peered-app --vault-name  {yourVaultName} --file ~/.ssh/jumpbox``
+``az keyvault secret show --vault  {yourVaultName} --name create-peered-app-password``
 
 Then, you can access your jumbbox server, with SSH as normal.
 
