@@ -4,10 +4,10 @@
     "parameters": {
 
         "subscriptionIDnumber": {
-            "value": "addSubsciptionNumberHere"
+            "value": "4804da0b-cfd0-4478-abc9-cc66394ead47"
         },
         "localIP": {
-            "value": "addIPofLocalMachineHere"
+            "value": "213.102.70.211"
         },
 
         "location": {

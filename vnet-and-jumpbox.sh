@@ -32,7 +32,7 @@ SSH_PRIVATE_KEY=$(cat ~/.ssh/create-peered-app) && \
 rm -rf ~/.ssh/create-peered-app*
 
 # create the Azure Key Vault
-keyVaultName="${resourceGroup}keyvault24389"
+keyVaultName="${resourceGroup}keyvault27779"
 printf "\n>>  Creating a new Azure Key Vault called $keyVaultName...\n"
 az keyvault create  --name $keyVaultName   --resource-group $resourceGroup  --output table
 
