@@ -39,4 +39,5 @@ You can find your ``subscriptionIDnumber`` (and any other Azure resource IDs) ea
 ``bash vnet-and-jumpbox.sh  westus2 newapplication``
 
 Then, you can access your jumbbox server, with SSH as normal.
+
 ``ssh azureuser@{public IP of your VM} -i ~/.ssh/jumpbox``
