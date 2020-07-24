@@ -2,9 +2,6 @@
     "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
     "contentVersion": "1.0.0.0",
     "parameters": {
-        "sshPublicKey": {
-            "type": "string"
-        },
         "subscriptionIDnumber": {
             "type": "string"
         },
@@ -85,6 +82,9 @@
         },
         "diagnosticsStorageAccountKind": {
             "type": "string"
+        },
+        "keyData": {
+            "type": "securestring"
         }
        },
     "variables": {
@@ -250,7 +250,7 @@
                             "publicKeys": [
                                 {
                                     "path": "[concat('/home/', parameters('adminUsername'), '/.ssh/authorized_keys')]",
-                                    "keyData": "[parameters('sshPublicKey')]"}
+                                    "keyData": "[parameters('keyData')]"}
                             ]
                         }
                     }

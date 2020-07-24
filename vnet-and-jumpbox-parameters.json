@@ -4,11 +4,14 @@
     "parameters": {
 
         "subscriptionIDnumber": {
-            "value": "4804da0b-cfd0-4478-abc9-cc66394ead47"
+            "value": "add your subscription ID here"
         },
         "localIP": {
-            "value": "213.102.70.211"
+            "value": "add your local machine's IP address here"
         },
+        "keyData": {
+            "value": "add your public SSH key here"
+               },
 
         "location": {
             "value": "westus2"
