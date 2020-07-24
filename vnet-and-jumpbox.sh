@@ -1,5 +1,4 @@
 # Bash script to create an SSH key and save it to Azure Key Vault, prior to running an ARM template to create a VNET and Jumpbox.
-# SSH and Key Vault code from https://github.com/starkfell/100DaysOfIaC/blob/master/articles/day.68.manage.access.to.linux.vms.using.key.vault.part.1.md
 
 # check that arguments for Location and Resource Group have been supplied
 if (( "$#" != 2)) 
