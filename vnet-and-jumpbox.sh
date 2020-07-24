@@ -6,14 +6,13 @@ if (( "$#" != 2))
 then
     echo "Please supply the Location you wish the resources to be created in, the name of the Resource Group, and your private SSH key"
     echo "For example:"
-    echo "bash vnet-and-jumpbox.sh  westus2 $SSH_PUBLIC_KEY"
+    echo "bash vnet-and-jumpbox.sh  westus2"
 exit 1
 fi
 
 # set the location for the Resource Group and its name
 location=$1
 resourceGroup=$2
-publicKey=$3
 
 # create a new Azure Resource Group for the VNET, Jumpbox, etc
 printf "\n>> Creating a new Resource Group, \"${resourceGroup}\" in \"${location}\"...\n"
@@ -26,10 +25,7 @@ az deployment group create \
   --name  deployVNETandJumpbox \
   --resource-group $resourceGroup \
   --template-file vnet-and-jumpbox.json \
-  --parameters vnet-and-jumpbox-parameters.json \
-  --parameters sshPublicKey=publicKey
-
-
+  --parameters vnet-and-jumpbox-parameters.json 
 
 
 
